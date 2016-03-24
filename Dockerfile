@@ -9,6 +9,8 @@ MAINTAINER Paul Schoenfelder <paulschoenfelder@gmail.com>
 ENV REFRESHED_AT 2016-03-20
 ENV LANG en_US.UTF-8
 ENV HOME /root
+# Set this so that CTRL+G works properly
+ENV TERM=xterm
 
 # Install Erlang
 RUN echo 'http://dl-4.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
