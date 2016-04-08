@@ -7,6 +7,10 @@ left as an exercise for the reader.
 
 ## Usage
 
+NOTE: This image sets up a `default` user, with home set to `/opt/app` and owned by that user. The working directory
+is also set to `$HOME`. It is highly recommended that you add a `USER default` instruction to the end of your 
+Dockerfile so that your app runs in a non-elevated context.
+
 To boot straight to a prompt in the image:
 
 ```
@@ -23,23 +27,18 @@ a
 Extending for your own application:
 
 ```dockerfile
-FROM bitwalker/alpine-erlang:1.0
+FROM bitwalker/alpine-erlang:4.0
 
 # Set exposed ports
 EXPOSE 5000
 ENV PORT=5000
 
-# Set your project's working directory
-WORKDIR /app
-
-ENV HOME=/app MIX_ENV=prod
-
-RUN groupadd -r appuser -g 433 && \
-    useradd -u 431 -r -g appuser -d /app -s /sbin/nologin -c "app user" appuser && \
-    chown -R appuser:appuser /app
+ENV MIX_ENV=prod
 
 ADD yourapp.tar.gz ./
 RUN tar -xzvf yourapp.tar.gz
+
+USER default
 
 CMD ./bin/yourapp foreground
 ```
