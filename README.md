@@ -14,7 +14,7 @@ Dockerfile so that your app runs in a non-elevated context.
 To boot straight to a prompt in the image:
 
 ```
-$ docker run --rm -it bitwalker/alpine-erlang erl
+$ docker run --rm -it --user=root bitwalker/alpine-erlang erl
 Erlang/OTP 18 [erts-7.2.1] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
 
 Eshell V7.2.1  (abort with ^G)
