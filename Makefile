@@ -10,8 +10,11 @@ help:
 test: ## Test the Docker image
 	docker run --rm -it $(IMAGE_NAME):$(VERSION) erl -version
 
+shell: ## Run an Erlang shell in the image
+	docker run --rm -it $(IMAGE_NAME):$(VERSION) erl
+
 build: ## Rebuild the Docker image
-	docker build --force-rm -t $(IMAGE_NAME):$(VERSION) -t $(IMAGE_NAME):latest - < ./Dockerfile
+	docker build --force-rm -t $(IMAGE_NAME):$(VERSION) -t $(IMAGE_NAME):latest .
 
 release: build ## Rebuild and release the Docker image to Docker Hub
 	docker push $(IMAGE_NAME):$(VERSION)
