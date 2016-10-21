@@ -27,7 +27,7 @@ RUN \
     # Install Erlang/OTP deps
     apk add --no-cache \
       ca-certificates \
-      libressl-dev@edge \
+      openssl-dev@edge \
       ncurses-dev@edge \
       unixodbc-dev@edge \
       zlib-dev@edge && \
