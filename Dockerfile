@@ -51,7 +51,6 @@ RUN \
       --without-debugger \
       --without-observer \
       --without-jinterface \
-      --without-common_test \
       --without-cosEvent\
       --without-cosEventDomain \
       --without-cosFileTransfer \
