@@ -1,47 +1,11 @@
-# Erlang on Alpine Linux
+# Erlang runtime on Alpine Linux
 
-This Dockerfile provides a full installation of Erlang on Alpine, intended for running Erlang releases,
-so it has no build tools installed. The Erlang installation is provided so one can avoid cross-compiling
-releases. The caveat of course is if one has NIFs which require a native compilation toolchain, but that is
-left as an exercise for the reader.
+Alpine image with just the runtime os libraries needed to run
+an erlang release. No Erlang VM is included in this image.
 
-## Usage
+Based on Bitwalker's alpine erlang
+https://github.com/bitwalker/alpine-erlang
 
-NOTE: This image sets up a `default` user, with home set to `/opt/app` and owned by that user. The working directory
-is also set to `$HOME`. It is highly recommended that you add a `USER default` instruction to the end of your
-Dockerfile so that your app runs in a non-elevated context.
-
-To boot straight to a prompt in the image:
-
-```
-$ docker run --rm -it --user=root bitwalker/alpine-erlang erl
-Erlang/OTP 19 [erts-8.2.1] [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false]
-
-Eshell V8.2.1  (abort with ^G)
-1>
-BREAK: (a)bort (c)ontinue (p)roc info (i)nfo (l)oaded
-       (v)ersion (k)ill (D)b-tables (d)istribution
-a
-```
-
-Extending for your own application:
-
-```dockerfile
-FROM bitwalker/alpine-erlang:19.2.1
-
-# Set exposed ports
-EXPOSE 5000
-ENV PORT=5000
-
-ENV MIX_ENV=prod
-
-ADD yourapp.tar.gz ./
-
-USER default
-
-ENTRYPOINT ["./bin/yourapp"]
-CMD ["foreground"]
-```
 
 ## License
 
